@@ -11,10 +11,10 @@ import css from './App.module.css';
 const INITIAL_STATE = {
   images: [],
   page: 1,
-  perPage: 1,
   isLoading: false,
   query: '',
   totalHits: '',
+  showModal: false,
 };
 
 class App extends Component {
@@ -52,7 +52,7 @@ class App extends Component {
     }
   }
 
-  LoadMoreImages = () => {
+  loadMoreImages = () => {
     this.setState(prevState => {
       return { page: prevState.page + 1 };
     });
@@ -88,7 +88,7 @@ class App extends Component {
         )}
 
         {totalHits > images.length && (
-          <Button moreImage={this.LoadMoreImages} />
+          <Button moreImage={this.loadMoreImages} />
         )}
         {isLoading && <Loader />}
         {showModal && (

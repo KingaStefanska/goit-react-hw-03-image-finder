@@ -39,6 +39,8 @@ class Modal extends Component {
 Modal.propTypes = {
   handleKeyPress: PropTypes.func.isRequired,
   backdropOnClick: PropTypes.func.isRequired,
+  modalImage: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
 };
 
 export default Modal;
