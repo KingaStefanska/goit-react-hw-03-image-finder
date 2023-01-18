@@ -1,21 +1,21 @@
 import PropTypes from 'prop-types';
 import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ images, onClick }) => {
+const ImageGalleryItem = ({ image, onClick }) => {
   return (
     <li className={css.ImageGalleryItem}>
       <img
         className={css.ImageGalleryItemImage}
-        src={images.webformatURL}
-        alt={images.tags}
-        onClick={() => onClick(images.largeImageURL)}
+        src={image.webformatURL}
+        alt={image.tags}
+        onClick={() => onClick(image.largeImageURL)}
       />
     </li>
   );
 };
 
 ImageGalleryItem.propTypes = {
-  images: PropTypes.arrayOf(
+  image: PropTypes.objectOf(
     PropTypes.shape({
       tags: PropTypes.string.isRequired,
       webformatURL: PropTypes.string.isRequired,
