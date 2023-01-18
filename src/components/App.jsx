@@ -14,7 +14,11 @@ const INITIAL_STATE = {
   isLoading: false,
   query: '',
   totalHits: '',
-  showModal: false,
+  modal: {
+    show: false,
+    largeImageURL: '',
+    tags: '',
+  },
 };
 
 class App extends Component {
@@ -61,7 +65,8 @@ class App extends Component {
   showModalImage = id => {
     const image = this.state.images.find(image => image.id === id);
     this.setState({
-      showModal: {
+      modal: {
+        show: true,
         largeImageURL: image.largeImageURL,
         tags: image.tags,
       },
@@ -69,7 +74,13 @@ class App extends Component {
   };
 
   closeModalImage = () => {
-    this.setState({ showModal: null });
+    this.setState({
+      modal: {
+        show: false,
+        largeImageURL: '',
+        tags: '',
+      },
+    });
   };
 
   componentWillUnmount() {
@@ -77,7 +88,7 @@ class App extends Component {
   }
 
   render() {
-    const { images, isLoading, totalHits, showModal } = this.state;
+    const { images, isLoading, totalHits, modal } = this.state;
 
     return (
       <div className={css.App}>
@@ -91,10 +102,10 @@ class App extends Component {
           <Button moreImage={this.loadMoreImages} />
         )}
         {isLoading && <Loader />}
-        {showModal && (
+        {modal && (
           <Modal
-            modalImage={showModal.largeImageURL}
-            tags={showModal.tags}
+            modalImage={modal.largeImageURL}
+            tags={modal.tags}
             closeModal={this.closeModalImage}
           />
         )}
