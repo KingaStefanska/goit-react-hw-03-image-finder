@@ -102,7 +102,7 @@ class App extends Component {
           <Button moreImage={this.loadMoreImages} />
         )}
         {isLoading && <Loader />}
-        {modal && (
+        {modal.show && (
           <Modal
             modalImage={modal.largeImageURL}
             tags={modal.tags}
